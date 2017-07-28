@@ -9,6 +9,7 @@ var app = express();
 
 var client = mongodb.MongoClient;
 var music;
+var religious;
 var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/miligate';
 client.connect(url, function(err,db){
 	if(err){
@@ -33,7 +34,7 @@ app.get("/",function(req,res){
 })
 
 app.get("/pullMusic",function(req,res){
-	events.find().toArray(function(err,docs){
+	music.find().toArray(function(err,docs){
 		if(err){
 			throw err;
 			res.sendStatus(500);
@@ -46,22 +47,9 @@ app.get("/pullMusic",function(req,res){
 	})
 })
 
-app.get("/pullMusic",function(req,res){
-	events.find().toArray(function(err,docs){
-		if(err){
-			throw err;
-			res.sendStatus(500);
-		}else{
-			var result = docs.map(function(data){
-				return data;
-			})
-			res.json(result);
-		}
-	})
-})
 
 app.get("/pullReligious",function(req,res){
-	events.find().toArray(function(err,docs){
+	religious.find().toArray(function(err,docs){
 		if(err){
 			throw err;
 			res.sendStatus(500);
