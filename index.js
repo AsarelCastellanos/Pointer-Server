@@ -33,29 +33,43 @@ app.get("/",function(req,res){
 })
 
 app.get("/pullMusic",function(req,res){
-	music.find({
-
-	}).limit(1).next( function(err,docs){
+	events.find().toArray(function(err,docs){
 		if(err){
 			throw err;
 			res.sendStatus(500);
 		}else{
-			
-			res.json(docs);
+			var result = docs.map(function(data){
+				return data;
+			})
+			res.json(result);
+		}
+	})
+})
+
+app.get("/pullMusic",function(req,res){
+	events.find().toArray(function(err,docs){
+		if(err){
+			throw err;
+			res.sendStatus(500);
+		}else{
+			var result = docs.map(function(data){
+				return data;
+			})
+			res.json(result);
 		}
 	})
 })
 
 app.get("/pullReligious",function(req,res){
-	religious.find({
-
-	}).limit(1).next( function(err,docs){
+	events.find().toArray(function(err,docs){
 		if(err){
 			throw err;
 			res.sendStatus(500);
 		}else{
-			
-			res.json(docs);
+			var result = docs.map(function(data){
+				return data;
+			})
+			res.json(result);
 		}
 	})
 })
