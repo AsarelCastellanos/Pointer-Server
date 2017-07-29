@@ -21,7 +21,7 @@ client.connect(url, function(err,db){
 		console.log("connected to our database")
 		music = db.collection("music");
 		religious = db.collection("religious");
-		savedEvents = db.collection("users")
+		users = db.collection("users")
 	}
 })
 
