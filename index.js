@@ -10,6 +10,7 @@ var app = express();
 var client = mongodb.MongoClient;
 var music;
 var religious;
+var savedEvents;
 var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/miligate';
 client.connect(url, function(err,db){
 	if(err){
@@ -20,6 +21,7 @@ client.connect(url, function(err,db){
 		console.log("connected to our database")
 		music = db.collection("music");
 		religious = db.collection("religious");
+		savedEvents = db.collection("savedEvents")
 	}
 })
 
@@ -60,6 +62,11 @@ app.get("/pullReligious",function(req,res){
 			res.json(result);
 		}
 	})
+})
+
+
+app.post("/saveEvent", function(req,res){
+	savedEvents.insertOne(req.body)
 })
 
 var port = process.env.PORT || 8080;
