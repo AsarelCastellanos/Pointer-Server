@@ -32,7 +32,7 @@ app.use(bodyparser.urlencoded({
 
 
 app.get("/",function(req,res){
-	console.log("inserting a new event");
+	res.sendStatus(200);
 })
 
 app.get("/pullMusic",function(req,res){
