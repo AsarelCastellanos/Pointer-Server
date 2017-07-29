@@ -65,7 +65,7 @@ app.get("/pullReligious",function(req,res){
 })
 
 
-app.post("/saveEvent", jsonparser, function(req,res){
+app.post("/saveEvent",function(req,res){
 	console.log(req.body);
 	var name = req.body.name;
 	var event = req.body.event;
