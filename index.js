@@ -83,7 +83,7 @@ app.post("/saveEvent", jsonparser, function(req,res){
 	})
 })
 
-app.post('/returnEvents',function(req,res){
+app.post('/returnSavedEvents',function(req,res){
 	console.log(req.body);
 	var name =req.body
 	users.find({
