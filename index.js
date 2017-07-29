@@ -91,6 +91,7 @@ app.get('/returnSavedEvents',jsonparser,function(req,res){
 		if(err){
 			res.send(err);
 		}else{
+			console.log("sending")
 			res.send(docs);
 		}
 
