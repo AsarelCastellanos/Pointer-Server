@@ -66,6 +66,7 @@ app.get("/pullReligious",function(req,res){
 
 
 app.post("/saveEvent", jsonparser, function(req,res){
+	console.log(req);
 	savedEvents.insertOne(req.body)
 })
 
