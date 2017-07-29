@@ -65,7 +65,7 @@ app.get("/pullReligious",function(req,res){
 })
 
 
-app.post("/saveEvent",function(req,res){
+app.post("/saveEvent", jsonparser, function(req,res){
 	console.log(req.body);
 	var name = req.body.name;
 	var event = req.body.event;
@@ -85,17 +85,17 @@ app.post("/saveEvent",function(req,res){
 
 app.get('/returnSavedEvents',function(req,res){
 	console.log(req);
+	var name =req.body
+	// users.find({
+	// 	"name":name
+	// },function(err,docs){
+	// 	if(err){
+	// 		res.send(err);
+	// 	}else{
+	// 		res.send(docs);
+	// 	}
 
-	users.find({
-		"name":"John Doe"
-	},function(err,docs){
-		if(err){
-			res.send(err);
-		}else{
-			res.send(docs);
-		}
-
-	})
+	// })
 })
 
 var port = process.env.PORT || 8080;
