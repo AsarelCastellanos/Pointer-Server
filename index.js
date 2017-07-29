@@ -84,7 +84,6 @@ app.post("/saveEvent", jsonparser, function(req,res){
 })
 
 app.get('/returnSavedEvents',function(req,res){
-	console.log(req);
 
 	users.find({
 		"name": "John Doe"
