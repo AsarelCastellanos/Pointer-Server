@@ -10,6 +10,7 @@ var app = express();
 var client = mongodb.MongoClient;
 var music;
 var religious;
+var film;
 var users;
 var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/miligate';
 client.connect(url, function(err,db){
@@ -21,6 +22,7 @@ client.connect(url, function(err,db){
 		console.log("connected to our database")
 		music = db.collection("music");
 		religious = db.collection("religious");
+		film = db.collection("film")
 		users = db.collection("users")
 	}
 })
@@ -52,6 +54,20 @@ app.get("/pullMusic",function(req,res){
 
 app.get("/pullReligious",function(req,res){
 	religious.find().toArray(function(err,docs){
+		if(err){
+			throw err;
+			res.sendStatus(500);
+		}else{
+			var result = docs.map(function(data){
+				return data;
+			})
+			res.json(result);
+		}
+	})
+})
+
+app.get("/pullFilm",function(req,res){
+	film.find().toArray(function(err,docs){
 		if(err){
 			throw err;
 			res.sendStatus(500);
