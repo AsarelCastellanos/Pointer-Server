@@ -85,7 +85,18 @@ app.post("/saveEvent", jsonparser, function(req,res){
 	console.log(req.body);
 	var name = req.body.name;
 	var event = req.body.event;
-	users.findOneAndUpdate({
+	users.findOne({
+		"name": "John Doe"
+	}, function(err,docs){
+		var counter = 0
+		for ( i=0; i<docs.savedEvents.length; i++ ){
+			if (docs.savedEvents[i].Name == req.body.event.Name){
+				counter = 1;
+				break
+			}
+		}
+		if (counter == 0) {
+			users.findOneAndUpdate({
 		"name": name
 	},
 	{
@@ -95,6 +106,10 @@ app.post("/saveEvent", jsonparser, function(req,res){
 			res.sendFile(err);
 		}else{
 			res.sendStatus(200);
+		}
+	})
+		}else {
+			res.send("Already saved")
 		}
 	})
 })
