@@ -11,6 +11,9 @@ var client = mongodb.MongoClient;
 var music;
 var religious;
 var film;
+var food;
+var art;
+var sports;
 var users;
 var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/miligate';
 client.connect(url, function(err,db){
@@ -22,7 +25,10 @@ client.connect(url, function(err,db){
 		console.log("connected to our database")
 		music = db.collection("music");
 		religious = db.collection("religious");
-		film = db.collection("film")
+		film = db.collection("film");
+		art = db.collection("art");
+		food = db.collection("food");
+		sports = db.collection("sports");
 		users = db.collection("users")
 	}
 })
@@ -35,6 +41,34 @@ app.use(bodyparser.urlencoded({
 
 app.get("/",function(req,res){
 	res.sendStatus(200);
+})
+
+app.get("/pullArt",function(req,res){
+	art.find().toArray(function(err,docs){
+		if(err){
+			throw err;
+			res.sendStatus(500);
+		}else{
+			var result = docs.map(function(data){
+				return data;
+			})
+			res.json(result);
+		}
+	})
+})
+
+app.get("/pullFood",function(req,res){
+	food.find().toArray(function(err,docs){
+		if(err){
+			throw err;
+			res.sendStatus(500);
+		}else{
+			var result = docs.map(function(data){
+				return data;
+			})
+			res.json(result);
+		}
+	})
 })
 
 app.get("/pullMusic",function(req,res){
@@ -68,6 +102,20 @@ app.get("/pullReligious",function(req,res){
 
 app.get("/pullFilm",function(req,res){
 	film.find().toArray(function(err,docs){
+		if(err){
+			throw err;
+			res.sendStatus(500);
+		}else{
+			var result = docs.map(function(data){
+				return data;
+			})
+			res.json(result);
+		}
+	})
+})
+
+app.get("/pullSports",function(req,res){
+	sports.find().toArray(function(err,docs){
 		if(err){
 			throw err;
 			res.sendStatus(500);
